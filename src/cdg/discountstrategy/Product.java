@@ -4,12 +4,15 @@ package cdg.discountstrategy;
 /**
  * @author cgeiser
  */
-public class Product implements ProductStrategy {
+public class Product  {
             
     private String prodId;
     private String prodDesc;
     private double prodPrice;
     private DiscountStrategy prodDiscStrategy;
+    
+    public Product () {
+    }
     
     public Product(String prodId, String prodDesc,
             double prodPrice, DiscountStrategy discStrat) {
