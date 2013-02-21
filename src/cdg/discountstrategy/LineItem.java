@@ -28,4 +28,7 @@ public class LineItem {
         return (item.getProductPrice() * quantity) - getDiscountAmt();
     }
    
+    public Product getItem() {
+        return item;
+    }
 }
