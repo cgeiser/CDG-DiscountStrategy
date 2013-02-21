@@ -6,6 +6,8 @@ package cdg.discountstrategy;
  */
 public class FlatRateDiscount implements DiscountStrategy {
     private double discountRate = 0.10;
+    private String discountDesc = (discountRate * 100) + "% off discount";
+    
         
     // Constructors
     public FlatRateDiscount() {
@@ -13,7 +15,7 @@ public class FlatRateDiscount implements DiscountStrategy {
     }
     
     public FlatRateDiscount(double rate) {
-        discountRate = rate;
+        this.setDiscountRate(rate);
     }
     
     
@@ -30,8 +32,17 @@ public class FlatRateDiscount implements DiscountStrategy {
     }
 
     public void setDiscountRate(double rate) {
-        this.discountRate = rate;
+        discountRate = rate;
+        discountDesc = (discountRate * 100) + "% off discount";
     }
+
+    @Override
+    public String getDiscountDesc() {
+//        setDiscountDesc();
+        return discountDesc;
+    }
+
+    
     
     
     // test method
@@ -39,8 +50,11 @@ public class FlatRateDiscount implements DiscountStrategy {
         FlatRateDiscount frd = new FlatRateDiscount();
         
         System.out.println(frd.getDiscount(100.00, 3));
+        System.out.println(frd.getDiscountDesc());
         
         frd.setDiscountRate(0.25);
+        System.out.println(frd.getDiscountRate());
         System.out.println(frd.getDiscount(100.00, 3));
+        System.out.println(frd.getDiscountDesc());
     }
 }

@@ -7,5 +7,7 @@ package cdg.discountstrategy;
 public interface DiscountStrategy {
 
     public abstract double getDiscount(double price, int qty);
+    
+    public abstract String getDiscountDesc();
 
 }

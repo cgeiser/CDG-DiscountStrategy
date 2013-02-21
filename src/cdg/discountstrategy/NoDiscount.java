@@ -5,6 +5,7 @@ package cdg.discountstrategy;
  * @author cgeiser
  */
 public class NoDiscount implements DiscountStrategy {
+    private String discountDesc = "No Discount";
     
     // Constructor
     public NoDiscount() {
@@ -18,6 +19,16 @@ public class NoDiscount implements DiscountStrategy {
         return 0;
     }
 
+    @Override
+    public String getDiscountDesc() {
+        return discountDesc;
+    }
+
+    public void setDiscountDesc(String discountDesc) {
+        this.discountDesc = discountDesc;
+    }
+
+    
         
     // test method
     public static void main(String[] args) {

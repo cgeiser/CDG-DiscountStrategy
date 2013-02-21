@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cdg.discountstrategy;
 
 /**
@@ -9,8 +6,9 @@ package cdg.discountstrategy;
  * @author cgeiser
  */
 public class FixedAmountDiscount implements DiscountStrategy {
-
+    
     private double fixedAmount = 10.00;
+    private String discountDesc = "Up to $" + fixedAmount + " off coupon";
     
     // Constructors
     public FixedAmountDiscount() {
@@ -32,13 +30,22 @@ public class FixedAmountDiscount implements DiscountStrategy {
     }
 
     // Getters & Setters
-    public double getFixedAmountDiscount() {
+    public double getFixedAmount() {
         return fixedAmount;
     }
 
-    public void setFixedAmountDiscount(double amt) {
-        fixedAmount = amt;
+    public void setFixedAmount(double fixedAmount) {
+        this.fixedAmount = fixedAmount;
+        discountDesc = "Up to $" + fixedAmount + " off coupon";
     }
+
+    @Override
+    public String getDiscountDesc() {
+//        setDiscountDesc();
+        return discountDesc;
+    }
+
+    
     
     
     
@@ -46,6 +53,11 @@ public class FixedAmountDiscount implements DiscountStrategy {
     public static void main(String[] args) {
         FixedAmountDiscount fad = new FixedAmountDiscount(10.00);
         System.out.println(fad.getDiscount(4.50, 2));
+        System.out.println(fad.getDiscountDesc());
         System.out.println(fad.getDiscount(4.50, 3));
+        System.out.println(fad.getDiscountDesc());
+        fad.setFixedAmount(20.00);
+        System.out.println(fad.getDiscount(4.50, 5));
+        System.out.println(fad.getDiscountDesc());
     }
 }

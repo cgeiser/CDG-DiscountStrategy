@@ -7,6 +7,8 @@ public class QuantityDiscount implements DiscountStrategy {
 
     private double discountRate = 0.10;
     private int minQty = 5;
+    private String discountDesc = (discountRate * 100) + "% off "
+            + minQty + " or more";
 
     // Constructors
     public QuantityDiscount() {
@@ -38,6 +40,8 @@ public class QuantityDiscount implements DiscountStrategy {
 
     public void setDiscountRate(double rate) {
         this.discountRate = rate;
+        discountDesc = (discountRate * 100) + "% off "
+            + minQty + " or more";
     }
 
     public int getMinQty() {
@@ -46,6 +50,14 @@ public class QuantityDiscount implements DiscountStrategy {
 
     public void setMinQty(int minQty) {
         this.minQty = minQty;
+    }
+
+    public String getDiscountDesc() {
+        return discountDesc;
+    }
+
+    public void setDiscountDesc(String discountDesc) {
+        this.discountDesc = discountDesc;
     }
     
     
