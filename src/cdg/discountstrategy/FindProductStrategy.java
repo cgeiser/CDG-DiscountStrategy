@@ -6,7 +6,7 @@ package cdg.discountstrategy;
  */
 public interface FindProductStrategy  {
     
-    public abstract Product getProductMatch(String productId);
+    public abstract Product findProduct(String productId);
 
 
     

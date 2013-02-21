@@ -10,7 +10,7 @@ public class TextFileProductDatabase implements FindProductStrategy {
     
     
     @Override
-    public  Product getProductMatch (final String prodId) {
+    public  Product findProduct (final String prodId) {
 	        // validation is needed
 	        Product product = null;
 //	        for(Product p : products) {
@@ -27,11 +27,11 @@ public class TextFileProductDatabase implements FindProductStrategy {
     // test method
     public static void main(String[] args) {
         TextFileProductDatabase fd = new TextFileProductDatabase();
-        Product p = fd.getProductMatch("2222");
+        Product p = fd.findProduct("2222");
         System.out.println(p.getProductId() + "  " + p.getProductDesc() + "  "
                 + p.getProductPrice());
         
-        Product f = fd.getProductMatch("6699");
+        Product f = fd.findProduct("6699");
         if (f == null) {
             System.out.println("No Match found");
         }
