@@ -6,7 +6,7 @@ package cdg.discountstrategy;
  */
 public class Ticket extends Tax {
     
-    private LineItem[] lineItems;
+    private LineItem[] lineItems = new LineItem[0];
     private Customer customer;
     private double subtotal = 0;
     private double salesTax;
@@ -16,21 +16,32 @@ public class Ticket extends Tax {
         customer = c;
     }
     
-    public void addItemToTicket(String itemId, int qty) {
-        FindProductStrategy fps = new FakeDatabase();
-        Product product = fps.findProduct(itemId);
-        if (product != null) {
-            addToArray(new LineItem(itemId, qty));
-        }
+//    public void addItemToTicket(String itemId, int qty) {
+//        FindProductStrategy fps = new FakeDatabase();
+//        Product product = fps.findProduct(itemId);
+//        if (product != null) {
+//            addToArray(new LineItem(itemId, qty));
+//        }
+//    }
+    public void addLineItem(LineItem li) {
+        addToArray(li);
     }
     
-    public void addToArray(LineItem lI) {
+    private void addToArray(LineItem lI) {
         LineItem[] temp = new LineItem[lineItems.length + 1];
         System.arraycopy(lineItems, 0, temp, 0, lineItems.length);
         temp[lineItems.length] = lI;
         lineItems = temp;
         
     }
+    
+    public void closeTicket() {
+        findSubtotal();
+        findSalesTax(subtotal);
+        findTotalSale();
+    }
+    
+    
 
     public double getSubtotal() {
         return subtotal;
@@ -41,11 +52,6 @@ public class Ticket extends Tax {
         for (int i= 0; i <lineItems.length; i++) {
             subtotal += lineItems[i].getExtendedPrice();
         }
-    }
-    public void closeTicket() {
-        findSubtotal();
-        findSalesTax(subtotal);
-        setTotalSale();
     }
     
     public double getSalesTax() {
@@ -60,9 +66,22 @@ public class Ticket extends Tax {
         return totalSale;
     }
 
-    public void setTotalSale() {
+    public void findTotalSale() {
         this.totalSale = subtotal + salesTax;
     }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    
+    public LineItem[] getLineItems() {
+        return lineItems;
+    }
+    
     
     
 }

@@ -19,9 +19,25 @@ public class CashRegister {
         }
     }
     
+    public void addItemToTicket(String itemId, int qty) {
+        FindProductStrategy fps = new FakeDatabase();
+        Product product = fps.findProduct(itemId);
+        if (product != null) {
+            ticket.addLineItem(new LineItem(itemId, qty));
+        }
+    }
+    
     public void checkout(ReceiptStrategy rs) {
         ticket.closeTicket();
         receiptStrategy = rs;
         receiptStrategy.displayReceipt(ticket);
+    }
+    
+    // test
+    public static void main(String[] args) {
+        CashRegister cr = new CashRegister();
+        cr.startNewTicket("A00");
+        cr.addItemToTicket("2222", 1);
+        cr.checkout(new ConsoleReceipt());
     }
 }
