@@ -38,6 +38,8 @@ public class CashRegister {
         CashRegister cr = new CashRegister();
         cr.startNewTicket("A00");
         cr.addItemToTicket("2222", 1);
+        cr.addItemToTicket("3333", 3);
+        cr.addItemToTicket("1111", 1);
         cr.checkout(new ConsoleReceipt());
     }
 }

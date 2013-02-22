@@ -6,7 +6,8 @@ package cdg.discountstrategy;
  */
 public class FlatRateDiscount implements DiscountStrategy {
     private double discountRate = 0.10;
-    private String discountDesc = (discountRate * 100) + "% off discount";
+    private String discountDesc = Round.roundToInteger(discountRate * 100)
+            + "% off";
     
         
     // Constructors
@@ -22,7 +23,7 @@ public class FlatRateDiscount implements DiscountStrategy {
     // get Discount
     @Override
     public double getDiscount(double price, int qty) {
-        return price * discountRate * qty;
+        return Round.roundToTwoDecimals(price * discountRate * qty);
     }
 
     
@@ -33,7 +34,8 @@ public class FlatRateDiscount implements DiscountStrategy {
 
     public void setDiscountRate(double rate) {
         discountRate = rate;
-        discountDesc = (discountRate * 100) + "% off discount";
+        discountDesc = Round.roundToInteger(discountRate * 100)
+                + "% off";
     }
 
     @Override

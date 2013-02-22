@@ -7,8 +7,8 @@ public class QuantityDiscount implements DiscountStrategy {
 
     private double discountRate = 0.10;
     private int minQty = 5;
-    private String discountDesc = (discountRate * 100) + "% off "
-            + minQty + " or more";
+    private String discountDesc = Round.roundToInteger(discountRate * 100)
+            + "% off " + minQty + " or more";
 
     // Constructors
     public QuantityDiscount() {
@@ -28,7 +28,7 @@ public class QuantityDiscount implements DiscountStrategy {
     @Override
     public double getDiscount(double price, int qty) {
         if (qty >= minQty) {
-            return price * discountRate * qty;
+            return Round.roundToTwoDecimals(price * discountRate * qty);
         }
         else {return 0;}
     }
@@ -40,7 +40,7 @@ public class QuantityDiscount implements DiscountStrategy {
 
     public void setDiscountRate(double rate) {
         this.discountRate = rate;
-        discountDesc = (discountRate * 100) + "% off "
+        discountDesc = Round.roundToInteger(discountRate * 100) + "% off "
             + minQty + " or more";
     }
 

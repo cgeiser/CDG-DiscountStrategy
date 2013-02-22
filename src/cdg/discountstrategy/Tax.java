@@ -9,6 +9,6 @@ public abstract class Tax {
     private final double SALES_TAX_RATE = 0.051;
     
     public double calculateSalesTax(double subtotal) {
-        return subtotal * SALES_TAX_RATE;
+        return Round.roundToTwoDecimals(subtotal * SALES_TAX_RATE);
     }
 }

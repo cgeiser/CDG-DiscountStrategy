@@ -16,15 +16,9 @@ public class Ticket extends Tax {
         customer = c;
     }
     
-//    public void addItemToTicket(String itemId, int qty) {
-//        FindProductStrategy fps = new FakeDatabase();
-//        Product product = fps.findProduct(itemId);
-//        if (product != null) {
-//            addToArray(new LineItem(itemId, qty));
-//        }
-//    }
     public void addLineItem(LineItem li) {
         addToArray(li);
+        subtotal += li.getExtendedPrice();
     }
     
     private void addToArray(LineItem lI) {
@@ -36,32 +30,22 @@ public class Ticket extends Tax {
     }
     
     public void closeTicket() {
-        findSubtotal();
-        findSalesTax(subtotal);
+        salesTax = calculateSalesTax(subtotal);
         findTotalSale();
     }
     
     
 
     public double getSubtotal() {
-        return subtotal;
+        return Round.roundToTwoDecimals(subtotal);
     }
 
-    public void findSubtotal() {
-        subtotal = 0;
-        for (int i= 0; i <lineItems.length; i++) {
-            subtotal += lineItems[i].getExtendedPrice();
-        }
-    }
-    
+        
     public double getSalesTax() {
         return salesTax;
     }
 
-    public void findSalesTax(double subtotal) {
-        calculateSalesTax(subtotal);
-    }
-
+    
     public double getTotalSale() {
         return totalSale;
     }

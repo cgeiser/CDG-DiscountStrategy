@@ -20,12 +20,13 @@ public class LineItem {
     
     // Getters
     public double getDiscountAmt() {
-        return item.getProductDiscStrategy().getDiscount(
-                    item.getProductPrice(), quantity);
+        return Round.roundToTwoDecimals(item.getProductDiscStrategy().getDiscount(
+                    item.getProductPrice(), quantity));
     }
 
     public double getExtendedPrice() {
-        return (item.getProductPrice() * quantity) - getDiscountAmt();
+        return Round.roundToTwoDecimals(item.getProductPrice() * quantity)
+                - getDiscountAmt();
     }
    
     public Product getItem() {

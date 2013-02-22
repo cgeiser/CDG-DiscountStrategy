@@ -22,10 +22,10 @@ public class FixedAmountDiscount implements DiscountStrategy {
     @Override
     public double getDiscount(double price, int qty) {
         if (price * qty >= fixedAmount) {
-            return fixedAmount;
+            return Round.roundToTwoDecimals(fixedAmount);
         }
         else {
-            return (price * qty);
+            return Round.roundToTwoDecimals(price * qty);
     }
     }
 
@@ -41,7 +41,6 @@ public class FixedAmountDiscount implements DiscountStrategy {
 
     @Override
     public String getDiscountDesc() {
-//        setDiscountDesc();
         return discountDesc;
     }
 

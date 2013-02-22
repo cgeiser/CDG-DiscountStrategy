@@ -20,8 +20,12 @@ public class ConsoleReceipt implements ReceiptStrategy {
         this.ticket = ticket;
         formatHeaderSection();
         formatCustomerSection();
+        formatLineItemSection();
+        formatTotalsSection();
         System.out.print(headerSection);
         System.out.print(customerSection);
+        System.out.print(lineItemSection);
+        System.out.print(totalsSection);
     }
 
     
@@ -34,7 +38,7 @@ public class ConsoleReceipt implements ReceiptStrategy {
         headerSection.append("\n*        Sandy Falls, Wisconsin        *");
         headerSection.append("\n*                                      *");
         headerSection.append("\n****************************************");
-        headerSection.append("\n\n              Receipt for");
+        headerSection.append("\n\n                Receipt");
         
     }
     
@@ -45,6 +49,7 @@ public class ConsoleReceipt implements ReceiptStrategy {
         customerSection.append(id);
         customerSection.append(spaces, 0, 40 - id.length() - name.length());
         customerSection.append(name);
+        customerSection.append("\n----------------------------------------");
     }
     
     private void formatLineItemSection() {
@@ -59,15 +64,37 @@ public class ConsoleReceipt implements ReceiptStrategy {
                 spCount += 3;
                 lineItemSection.append(items[x].getItem().getProductDesc());
                 spCount += items[x].getItem().getProductDesc().length();
-//                spCount += (items[x].getExtendedPrice());
+                double pr = items[x].getExtendedPrice();
+                spCount += Double.toString(pr).length();
 //                Chris =  fgvftcygtf uyk6rfv ut==
-                lineItemSection.append(spaces, 0, 40-spCount);
+                lineItemSection.append(spaces, 0, 39-spCount);
+                lineItemSection.append("$");
+                lineItemSection.append(pr);
+                lineItemSection.append("\n");
+                DiscountStrategy ds = items[x].getItem()
+                        .getProductDiscStrategy();
+                if (!ds.getDiscountDesc().equals("No Discount") ) {
+                    lineItemSection.append(items[x].getItem()
+                        .getProductDiscStrategy().getDiscountDesc());
+                }
         }
         
     }
     
     private void formatTotalsSection() {
-        
+        totalsSection.append("\n                              ----------");
+        totalsSection.append("\n                      Subtotal $");
+        double sub = ticket.getSubtotal();
+        totalsSection.append(spaces, 0, 8 - Double.toString(sub).length());
+        totalsSection.append(sub);
+        totalsSection.append("\n                           Tax $");
+        double tax = ticket.getSalesTax();
+        totalsSection.append(spaces, 0, 8 - Double.toString(tax).length());
+        totalsSection.append(tax);
+        totalsSection.append("\n                     TOTAL DUE $");
+        double tot = ticket.getTotalSale();
+        totalsSection.append(spaces, 0, 8 - Double.toString(tot).length());
+        totalsSection.append(tot);
     }
     
     
