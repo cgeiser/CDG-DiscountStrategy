@@ -23,14 +23,13 @@ public class CashRegister {
         FindProductStrategy fps = new FakeDatabase();
         Product product = fps.findProduct(itemId);
         if (product != null) {
-            ticket.addLineItem(new LineItem(itemId, qty));
+            ticket.addLineItem(itemId, qty);
         }
     }
     
     public void checkout(ReceiptStrategy rs) {
-        ticket.closeTicket();
-        receiptStrategy = rs;
-        receiptStrategy.displayReceipt(ticket);
+        this.ticket.closeTicket();
+        rs.displayReceipt(ticket);
     }
     
     // test

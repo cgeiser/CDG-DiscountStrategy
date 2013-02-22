@@ -16,15 +16,16 @@ public class Ticket extends Tax {
         customer = c;
     }
     
-    public void addLineItem(LineItem li) {
-        addToArray(li);
-        subtotal += li.getExtendedPrice();
+    public void addLineItem(String id, int qty) {
+        LineItem item = new LineItem(id, qty);
+        addToArray(item);
+        subtotal += item.getExtendedPrice();
     }
     
-    private void addToArray(LineItem lI) {
+    public void addToArray(LineItem li) {
         LineItem[] temp = new LineItem[lineItems.length + 1];
         System.arraycopy(lineItems, 0, temp, 0, lineItems.length);
-        temp[lineItems.length] = lI;
+        temp[lineItems.length] = li;
         lineItems = temp;
         
     }
