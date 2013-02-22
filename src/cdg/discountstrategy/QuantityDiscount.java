@@ -20,7 +20,7 @@ public class QuantityDiscount implements DiscountStrategy {
     
     public QuantityDiscount(int minQty, double discRate) {
         this.minQty = minQty;
-        discountRate = discRate;
+        setDiscountRate(discRate);
     }
 
     

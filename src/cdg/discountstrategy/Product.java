@@ -19,7 +19,7 @@ public class Product  {
         this.prodId = prodId;
         this.prodDesc = prodDesc;
         this.prodPrice = prodPrice;
-        prodDiscStrategy = discStrat;
+        this.prodDiscStrategy = discStrat;
     }
 
     

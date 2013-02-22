@@ -42,12 +42,12 @@ public class Ticket extends Tax {
 
         
     public double getSalesTax() {
-        return salesTax;
+        return Round.roundToTwoDecimals(salesTax);
     }
 
     
     public double getTotalSale() {
-        return totalSale;
+        return Round.roundToTwoDecimals(totalSale);
     }
 
     public void findTotalSale() {

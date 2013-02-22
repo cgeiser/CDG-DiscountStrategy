@@ -15,7 +15,7 @@ public class FixedAmountDiscount implements DiscountStrategy {
     }
     
     public FixedAmountDiscount(double amt)  {
-        fixedAmount = amt;
+        setFixedAmount(amt);
     }
     
     // get Discount

@@ -32,13 +32,13 @@ public class ConsoleReceipt implements ReceiptStrategy {
     
     
     private void formatHeaderSection() {
-        headerSection.append("****************************************");
+        headerSection.append(  "****************************************");
         headerSection.append("\n*                                      *");
         headerSection.append("\n*           MOM & POP STORE            *");
         headerSection.append("\n*        Sandy Falls, Wisconsin        *");
         headerSection.append("\n*                                      *");
         headerSection.append("\n****************************************");
-        headerSection.append("\n\n                Receipt");
+        headerSection.append("\n                Receipt");
         
     }
     
@@ -53,14 +53,15 @@ public class ConsoleReceipt implements ReceiptStrategy {
     }
     
     private void formatLineItemSection() {
-        String sp3 = "   ";
+        
         LineItem[] items = ticket.getLineItems();
             for (int x=0; x<items.length; x++) {
                 int spCount = 0;
                 lineItemSection.append("\n");
+                // Item Line 1
                 lineItemSection.append(items[x].getItem().getProductId());
                 spCount += items[x].getItem().getProductId().length();
-                lineItemSection.append(sp3);
+                lineItemSection.append(spaces, 0, 3);
                 spCount += 3;
                 lineItemSection.append(items[x].getItem().getProductDesc());
                 spCount += items[x].getItem().getProductDesc().length();
@@ -71,6 +72,12 @@ public class ConsoleReceipt implements ReceiptStrategy {
                 lineItemSection.append("$");
                 lineItemSection.append(pr);
                 lineItemSection.append("\n");
+                // Item Line 2
+                lineItemSection.append(items[x].getQuantity());
+                lineItemSection.append(" @ $");
+                lineItemSection.append(items[x].getItem().getProductPrice());
+                lineItemSection.append("\n");
+                // Discount Desc Line
                 DiscountStrategy ds = items[x].getItem()
                         .getProductDiscStrategy();
                 if (!ds.getDiscountDesc().equals("No Discount") ) {
@@ -96,6 +103,5 @@ public class ConsoleReceipt implements ReceiptStrategy {
         totalsSection.append(spaces, 0, 8 - Double.toString(tot).length());
         totalsSection.append(tot);
     }
-    
     
 }

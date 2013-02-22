@@ -32,4 +32,8 @@ public class LineItem {
     public Product getItem() {
         return item;
     }
+    
+    public int getQuantity() {
+        return quantity;
+    }
 }
