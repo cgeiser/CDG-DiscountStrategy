@@ -11,7 +11,7 @@ public class Startup {
         
         CashRegister cr = new CashRegister();
         
-        cr.startNewTicket("F00");
+        cr.startNewTicket("E00");
         
         cr.addItemToTicket("1111", 1);
         cr.addItemToTicket("3333", 6);

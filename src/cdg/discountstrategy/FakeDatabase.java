@@ -58,29 +58,29 @@ public class FakeDatabase implements FindProductStrategy, FindCustomerStrategy {
     
     
     // test method
-    public static void main(String[] args) {
-        FakeDatabase fd = new FakeDatabase();
-        Product p = fd.findProduct("2222");
-        System.out.println(p.getProductId() + "  " + p.getProductDesc() + "  "
-                + p.getProductPrice());
-        
-        Product f = fd.findProduct("6699");
-        if (f == null) {
-            System.out.println("No Match found");
-        }
-        else {
-            System.out.println(f.getProductId() + "  " + f.getProductDesc() + "  "
-                + f.getProductPrice());
-        }
-        
-        
-        
-        Customer c = fd.findCustomer("F00");
-        if (c == null) {
-            System.out.println("No Match found");
-        }
-        else {
-            System.out.println(c.getCustId() + "  " + c.getCustName());
-        }
-    }
+//    public static void main(String[] args) {
+//        FakeDatabase fd = new FakeDatabase();
+//        Product p = fd.findProduct("2222");
+//        System.out.println(p.getProductId() + "  " + p.getProductDesc() + "  "
+//                + p.getProductPrice());
+//        
+//        Product f = fd.findProduct("6699");
+//        if (f == null) {
+//            System.out.println("No Match found");
+//        }
+//        else {
+//            System.out.println(f.getProductId() + "  " + f.getProductDesc() + "  "
+//                + f.getProductPrice());
+//        }
+//        
+//        
+//        
+//        Customer c = fd.findCustomer("F00");
+//        if (c == null) {
+//            System.out.println("No Match found");
+//        }
+//        else {
+//            System.out.println(c.getCustId() + "  " + c.getCustName());
+//        }
+//    }
 }

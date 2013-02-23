@@ -1,26 +1,31 @@
 package cdg.discountstrategy;
 
+import java.text.NumberFormat;
+
 /**
  * @author cgeiser
  */
 public class QuantityDiscount implements DiscountStrategy {
 
+    private NumberFormat percent = NumberFormat.getPercentInstance();
     private double discountRate = 0.10;
     private int minQty = 5;
-    private String discountDesc = Round.roundToInteger(discountRate * 100)
-            + "% off " + minQty + " or more";
+    private String discountDesc;
 
     // Constructors
     public QuantityDiscount() {
+        setDiscountDesc();
     }
 
     public QuantityDiscount(int minQty) {
         this.minQty = minQty;
+        setDiscountDesc();
     }
     
     public QuantityDiscount(int minQty, double discRate) {
         this.minQty = minQty;
         setDiscountRate(discRate);
+        setDiscountDesc();
     }
 
     
@@ -40,8 +45,7 @@ public class QuantityDiscount implements DiscountStrategy {
 
     public void setDiscountRate(double rate) {
         this.discountRate = rate;
-        discountDesc = Round.roundToInteger(discountRate * 100) + "% off "
-            + minQty + " or more";
+        setDiscountDesc();
     }
 
     public int getMinQty() {
@@ -50,29 +54,31 @@ public class QuantityDiscount implements DiscountStrategy {
 
     public void setMinQty(int minQty) {
         this.minQty = minQty;
+        setDiscountDesc();
     }
 
     public String getDiscountDesc() {
         return discountDesc;
     }
 
-    public void setDiscountDesc(String discountDesc) {
-        this.discountDesc = discountDesc;
+    private void setDiscountDesc() {
+        discountDesc = percent.format(discountRate) + " off "
+            + minQty + " or more";
     }
     
     
     
     // test method
-    public static void main(String[] args) {
-        QuantityDiscount qd1 = new QuantityDiscount();
-        System.out.println(qd1.getDiscount(100.00, 2));
-        
-        QuantityDiscount qd2 = new QuantityDiscount(10);
-        System.out.println(qd2.getDiscount(20, 6));
-        System.out.println(qd2.getDiscount(20, 10));
-        
-        QuantityDiscount qd3 = new QuantityDiscount(8, 0.30);
-        System.out.println(qd3.getDiscount(20, 6));
-        System.out.println(qd3.getDiscount(20, 10));
-    }
+//    public static void main(String[] args) {
+//        QuantityDiscount qd1 = new QuantityDiscount();
+//        System.out.println(qd1.getDiscount(100.00, 2));
+//        
+//        QuantityDiscount qd2 = new QuantityDiscount(10);
+//        System.out.println(qd2.getDiscount(20, 6));
+//        System.out.println(qd2.getDiscount(20, 10));
+//        
+//        QuantityDiscount qd3 = new QuantityDiscount(8, 0.30);
+//        System.out.println(qd3.getDiscount(20, 6));
+//        System.out.println(qd3.getDiscount(20, 10));
+//    }
 }

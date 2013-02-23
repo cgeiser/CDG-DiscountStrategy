@@ -59,12 +59,12 @@ public class Product  {
     
 
     // test method
-    public static void main(String[] args) {
-        Product p1 = new Product("3344", "Men's Black Socks", 7.89, new FixedAmountDiscount(4));
-        System.out.println(p1.getProductId());
-        System.out.println(p1.getProductDesc());
-        System.out.println(p1.getProductPrice());
-        System.out.println(p1.getProductDiscStrategy().getDiscount(p1.getProductPrice(), 1));
-    }
+//    public static void main(String[] args) {
+//        Product p1 = new Product("3344", "Men's Black Socks", 7.89, new FixedAmountDiscount(4));
+//        System.out.println(p1.getProductId());
+//        System.out.println(p1.getProductDesc());
+//        System.out.println(p1.getProductPrice());
+//        System.out.println(p1.getProductDiscStrategy().getDiscount(p1.getProductPrice(), 1));
+//    }
     
 }

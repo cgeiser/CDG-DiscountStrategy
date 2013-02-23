@@ -74,12 +74,12 @@ public class ConsoleReceipt implements ReceiptStrategy {
 //                Chris =  fgvftcygtf uyk6rfv ut==
                 lineItemSection.append(spaces, 0, 40-spCount);
                 lineItemSection.append(pr);
-                lineItemSection.append("\n");
+                lineItemSection.append("\n  ");
                 // Item Line 2
                 lineItemSection.append(items[x].getQuantity());
                 lineItemSection.append(" @ ");
                 lineItemSection.append(money.format(items[x].getItem().getProductPrice()));
-                lineItemSection.append("\n");
+                lineItemSection.append("\n  ");
                 // Discount Desc Line
                 DiscountStrategy ds = items[x].getItem()
                         .getProductDiscStrategy();

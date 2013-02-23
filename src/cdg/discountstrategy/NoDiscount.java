@@ -31,9 +31,9 @@ public class NoDiscount implements DiscountStrategy {
     
         
     // test method
-    public static void main(String[] args) {
-        NoDiscount nd = new NoDiscount();
-        
-        System.out.println(nd.getDiscount(100.00, 3));
-    }
+//    public static void main(String[] args) {
+//        NoDiscount nd = new NoDiscount();
+//        
+//        System.out.println(nd.getDiscount(100.00, 3));
+//    }
 }

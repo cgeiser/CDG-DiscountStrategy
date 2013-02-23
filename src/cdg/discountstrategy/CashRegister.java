@@ -33,15 +33,15 @@ public class CashRegister {
     }
     
     // test
-    public static void main(String[] args) {
-        CashRegister cr = new CashRegister();
-        cr.startNewTicket("A00");
-        cr.addItemToTicket("2222", 1);
-        cr.addItemToTicket("3333", 3);
-        cr.addItemToTicket("1111", 1);
-        cr.addItemToTicket("5555", 4);
-        cr.addItemToTicket("6666", 14);
-        cr.addItemToTicket("4444", 1);
-        cr.checkout(new ConsoleReceipt());
-    }
+//    public static void main(String[] args) {
+//        CashRegister cr = new CashRegister();
+//        cr.startNewTicket("A00");
+//        cr.addItemToTicket("2222", 1);
+//        cr.addItemToTicket("3333", 3);
+//        cr.addItemToTicket("1111", 1);
+//        cr.addItemToTicket("5555", 4);
+//        cr.addItemToTicket("6666", 14);
+//        cr.addItemToTicket("4444", 1);
+//        cr.checkout(new ConsoleReceipt());
+//    }
 }

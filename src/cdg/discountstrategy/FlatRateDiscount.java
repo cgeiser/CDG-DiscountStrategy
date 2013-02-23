@@ -1,22 +1,26 @@
 
 package cdg.discountstrategy;
 
+import java.text.NumberFormat;
+
 /**
  * @author cgeiser
  */
 public class FlatRateDiscount implements DiscountStrategy {
+    
+    private NumberFormat percent = NumberFormat.getPercentInstance();
     private double discountRate = 0.10;
-    private String discountDesc = Round.roundToInteger(discountRate * 100)
-            + "% off";
+    private String discountDesc;
     
         
     // Constructors
     public FlatRateDiscount() {
-        
+        setDiscountDesc();
     }
     
     public FlatRateDiscount(double rate) {
         setDiscountRate(rate);
+        setDiscountDesc();
     }
     
     
@@ -34,8 +38,7 @@ public class FlatRateDiscount implements DiscountStrategy {
 
     public void setDiscountRate(double rate) {
         discountRate = rate;
-        discountDesc = Round.roundToInteger(discountRate * 100)
-                + "% off";
+        setDiscountDesc();
     }
 
     @Override
@@ -44,19 +47,21 @@ public class FlatRateDiscount implements DiscountStrategy {
         return discountDesc;
     }
 
-    
+    private void setDiscountDesc() {
+         discountDesc = percent.format(discountRate) + " off";
+    }
     
     
     // test method
-    public static void main(String[] args) {
-        FlatRateDiscount frd = new FlatRateDiscount();
-        
-        System.out.println(frd.getDiscount(100.00, 3));
-        System.out.println(frd.getDiscountDesc());
-        
-        frd.setDiscountRate(0.25);
-        System.out.println(frd.getDiscountRate());
-        System.out.println(frd.getDiscount(100.00, 3));
-        System.out.println(frd.getDiscountDesc());
-    }
+//    public static void main(String[] args) {
+//        FlatRateDiscount frd = new FlatRateDiscount();
+//        
+//        System.out.println(frd.getDiscount(100.00, 3));
+//        System.out.println(frd.getDiscountDesc());
+//        
+//        frd.setDiscountRate(0.25);
+//        System.out.println(frd.getDiscountRate());
+//        System.out.println(frd.getDiscount(100.00, 3));
+//        System.out.println(frd.getDiscountDesc());
+//    }
 }
