@@ -1,24 +1,30 @@
 
 package cdg.discountstrategy;
 
+import java.text.NumberFormat;
+
 /**
  *
  * @author cgeiser
  */
 public class QuantityFixedAmountDiscount implements DiscountStrategy {
     
+    NumberFormat money = NumberFormat.getCurrencyInstance();
+    
     private double fixedAmount = 10.00;
     private int quantity = 2;
-    private String discountDesc = "Up to $" + fixedAmount + " off " + 
-            quantity + " or more";
+    private String discountDesc;
+    
     
     // Constructors
     public QuantityFixedAmountDiscount() {
+        setDiscountDesc();
     }
     
     public QuantityFixedAmountDiscount(int qty, double amt)  {
         quantity = qty;
         setFixedAmount(amt);
+        setDiscountDesc();
     }
     
     // get Discount
@@ -39,13 +45,25 @@ public class QuantityFixedAmountDiscount implements DiscountStrategy {
 
     public void setFixedAmount(double fixedAmount) {
         this.fixedAmount = fixedAmount;
-        discountDesc = "Up to $" + fixedAmount + " off " + 
-            quantity + " or more";
+        setDiscountDesc();
     }
 
     @Override
     public String getDiscountDesc() {
         return discountDesc;
+    }
+
+    private void setDiscountDesc() {
+        discountDesc = money.format(fixedAmount) + " off " + 
+            quantity + " or more";
+    }
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+        setDiscountDesc();
     }
 
     

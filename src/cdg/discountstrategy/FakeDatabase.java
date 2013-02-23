@@ -13,7 +13,7 @@ public class FakeDatabase implements FindProductStrategy, FindCustomerStrategy {
         new Product("4444", "LEGO Star Wars", 129.90, new FixedAmountDiscount(20)),
         new Product("5555", "Harry Potter DVD", 14.49, new NoDiscount()),
         new Product("6666", "Snickers Candy Bar", 0.79, new QuantityDiscount(10, 0.50)),
-        new Product("7777", "Yogurt", 0.65, new QuantityFixedAmountDiscount(6, 0.05))
+        new Product("7777", "Yogurt", 0.65, new QuantityFixedAmountDiscount(6, 2.0))
     };
     
     
