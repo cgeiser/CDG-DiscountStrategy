@@ -32,6 +32,9 @@ public class CashRegister {
         rs.displayReceipt(ticket);
     }
     
+    public Customer getCustomer() {
+        return customer;
+    }
     // test
 //    public static void main(String[] args) {
 //        CashRegister cr = new CashRegister();
