@@ -8,18 +8,37 @@ public class CashRegister {
     
     private Customer customer;
     private Ticket ticket;
-    private ReceiptStrategy receiptStrategy;
+//    private ReceiptOutputStrategy receiptStrategy;
+    private TaxStrategy taxStrategy = new SalesTax();
 
     
     public void startNewTicket(String custId) {
+        // validate custId
+        if (custId == null || custId.length() == 0) {
+            System.out.println("Invalid Customer ID");
+            return;
+        }
+        
         FindCustomerStrategy fcs = new FakeDatabase();
         customer = fcs.findCustomer(custId);
         if (customer != null) {
             ticket = new Ticket(customer);
         }
+        else {
+            System.out.println("Customer not found.");
+        }
     }
     
     public void addItemToTicket(String itemId, int qty) {
+        // validate itemId
+        if (itemId == null || itemId.length() == 0) {
+            System.out.println("Invalid Item ID");
+            return;
+        }
+        // validate qty
+        if (qty < 1) {
+            System.out.println("Invalid Quantity");
+        }
         FindProductStrategy fps = new FakeDatabase();
         Product product = fps.findProduct(itemId);
         if (product != null) {
@@ -27,8 +46,8 @@ public class CashRegister {
         }
     }
     
-    public void checkout(ReceiptStrategy rs) {
-        this.ticket.closeTicket();
+    public void checkout(ReceiptOutputStrategy rs) {
+        this.ticket.closeTicket(taxStrategy);
         rs.displayReceipt(ticket);
     }
     

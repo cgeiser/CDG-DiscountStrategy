@@ -18,6 +18,11 @@ public class FixedAmountDiscount implements DiscountStrategy {
     }
     
     public FixedAmountDiscount(double amt)  {
+            // validate amt
+            if (amt <= 0) {
+                System.out.println("Invalid Discount Amount");
+                System.exit(0);
+            }
         setFixedAmount(amt);
         setDiscountDesc();
     }
@@ -25,6 +30,10 @@ public class FixedAmountDiscount implements DiscountStrategy {
     // get Discount
     @Override
     public double getDiscount(double price, int qty) {
+            // validate price and qty
+            if (price <=0 || qty <= 0) {
+                System.out.println("Invalid Price or Quantity");
+            }
         if (price * qty >= fixedAmount) {
             return Round.roundToTwoDecimals(fixedAmount);
         }
@@ -39,6 +48,11 @@ public class FixedAmountDiscount implements DiscountStrategy {
     }
 
     public void setFixedAmount(double fixedAmount) {
+        // validate fixedAmount
+        if (fixedAmount <= 0) {
+            System.out.println("Invalid Fixed Amount");
+            System.exit(0);
+        }
         this.fixedAmount = fixedAmount;
         setDiscountDesc();
         

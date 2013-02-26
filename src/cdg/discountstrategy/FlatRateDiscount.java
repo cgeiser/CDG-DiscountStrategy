@@ -19,6 +19,10 @@ public class FlatRateDiscount implements DiscountStrategy {
     }
     
     public FlatRateDiscount(double rate) {
+            // validate rate
+            if (rate <= 0 || rate > 1) {
+                System.out.println("Invalid Discount Rate");
+            }
         setDiscountRate(rate);
         setDiscountDesc();
     }
@@ -27,6 +31,10 @@ public class FlatRateDiscount implements DiscountStrategy {
     // get Discount
     @Override
     public double getDiscount(double price, int qty) {
+            // validate price and qty
+            if (price <=0 || qty <= 0) {
+                    System.out.println("Invalid Price or Quantity");
+                }
         return Round.roundToTwoDecimals(price * discountRate * qty);
     }
 
@@ -37,6 +45,11 @@ public class FlatRateDiscount implements DiscountStrategy {
     }
 
     public void setDiscountRate(double rate) {
+            // validate rate
+            if (rate <=0 || rate >1) {
+                System.out.println("Invalid Discount Rate");
+                System.exit(0);
+            }
         discountRate = rate;
         setDiscountDesc();
     }

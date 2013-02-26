@@ -18,11 +18,26 @@ public class QuantityDiscount implements DiscountStrategy {
     }
 
     public QuantityDiscount(int minQty) {
+            // validate minQty
+            if (minQty < 1) {
+                System.out.println("Invalid Minimum Quantity");
+                System.exit(0);
+            }
         this.minQty = minQty;
         setDiscountDesc();
     }
     
     public QuantityDiscount(int minQty, double discRate) {
+            // validate minQty
+            if (minQty < 1) {
+                System.out.println("Invalid Minimum Quantity");
+                System.exit(0);
+            }
+            // validate discRate
+            if (discRate <= 0 || discRate > 1) {
+                System.out.println("Invalid Discount Rate");
+                System.exit(0);
+            }
         this.minQty = minQty;
         setDiscountRate(discRate);
         setDiscountDesc();
@@ -32,6 +47,10 @@ public class QuantityDiscount implements DiscountStrategy {
     // returns Discount
     @Override
     public double getDiscount(double price, int qty) {
+            // validate price and qty
+            if (price <=0 || qty <= 0) {
+                System.out.println("Invalid Price or Quantity");
+            }
         if (qty >= minQty) {
             return Round.roundToTwoDecimals(price * discountRate * qty);
         }
@@ -44,6 +63,11 @@ public class QuantityDiscount implements DiscountStrategy {
     }
 
     public void setDiscountRate(double rate) {
+            // validate rate
+            if (rate <= 0 || rate > 1) {
+                System.out.println("Invalid Discount Rate");
+                System.exit(0);
+            }
         this.discountRate = rate;
         setDiscountDesc();
     }
@@ -53,10 +77,16 @@ public class QuantityDiscount implements DiscountStrategy {
     }
 
     public void setMinQty(int minQty) {
+            // validate minQty
+            if (minQty < 1) {
+                System.out.println("Invalid Minimum Quantity");
+                System.exit(0);
+            }
         this.minQty = minQty;
         setDiscountDesc();
     }
 
+    @Override
     public String getDiscountDesc() {
         return discountDesc;
     }

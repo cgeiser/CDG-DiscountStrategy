@@ -22,6 +22,11 @@ public class QuantityFixedAmountDiscount implements DiscountStrategy {
     }
     
     public QuantityFixedAmountDiscount(int qty, double amt)  {
+            // validate qty & amt
+            if (qty < 1 || amt <= 0) {
+                System.out.println("Invalid Quantity or Amount");
+                System.exit(0);
+            }
         quantity = qty;
         setFixedAmount(amt);
         setDiscountDesc();
@@ -30,6 +35,10 @@ public class QuantityFixedAmountDiscount implements DiscountStrategy {
     // get Discount
     @Override
     public double getDiscount(double price, int qty) {
+            // validate price and qty
+            if (price <=0 || qty <= 0) {
+                System.out.println("Invalid Price or Quantity");
+            }
         if (price * qty >= fixedAmount) {
             return Round.roundToTwoDecimals(fixedAmount);
         }
@@ -71,14 +80,14 @@ public class QuantityFixedAmountDiscount implements DiscountStrategy {
     
     
     // test method
-    public static void main(String[] args) {
-        QuantityFixedAmountDiscount fad = new QuantityFixedAmountDiscount(3, 10.00);
-        System.out.println(fad.getDiscount(4.50, 2));
-        System.out.println(fad.getDiscountDesc());
-        System.out.println(fad.getDiscount(4.50, 3));
-        System.out.println(fad.getDiscountDesc());
-        fad.setFixedAmount(20.00);
-        System.out.println(fad.getDiscount(4.50, 5));
-        System.out.println(fad.getDiscountDesc());
-    }
+//    public static void main(String[] args) {
+//        QuantityFixedAmountDiscount fad = new QuantityFixedAmountDiscount(3, 10.00);
+//        System.out.println(fad.getDiscount(4.50, 2));
+//        System.out.println(fad.getDiscountDesc());
+//        System.out.println(fad.getDiscount(4.50, 3));
+//        System.out.println(fad.getDiscountDesc());
+//        fad.setFixedAmount(20.00);
+//        System.out.println(fad.getDiscount(4.50, 5));
+//        System.out.println(fad.getDiscountDesc());
+//    }
 }

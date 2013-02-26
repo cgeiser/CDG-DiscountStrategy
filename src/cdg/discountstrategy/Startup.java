@@ -7,18 +7,18 @@ package cdg.discountstrategy;
 public class Startup {
 
     public static void main(String[] args) {
-        ReceiptStrategy rs = new ConsoleReceipt();
+        ReceiptOutputStrategy ros = new ConsoleReceipt();
         
         CashRegister cr = new CashRegister();
         
-        cr.startNewTicket("E00");
+        cr.startNewTicket("C00");
         
         cr.addItemToTicket("1111", 1);
-        cr.addItemToTicket("3333", 6);
+        cr.addItemToTicket("3333", 2);
         cr.addItemToTicket("5555", 1);
-        cr.addItemToTicket("6666", 2);
+        cr.addItemToTicket("6666", 4);
         cr.addItemToTicket("7777", 12);
         
-        cr.checkout(rs);
+        cr.checkout(ros);
     }
 }

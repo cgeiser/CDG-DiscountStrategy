@@ -4,11 +4,12 @@ package cdg.discountstrategy;
 /**
  * @author Chris Geiser <cgeiser@my.wctc.edu>
  */
-public class Ticket extends Tax {
+public class Ticket {
     
     private LineItem[] lineItems = new LineItem[0];
     private Customer customer;
     private double subtotal = 0;
+    private double amountSaved = 0;
     private double salesTax;
     private double totalSale;
     
@@ -19,7 +20,8 @@ public class Ticket extends Tax {
     public void addLineItem(String id, int qty) {
         LineItem item = new LineItem(id, qty);
         addToArray(item);
-        subtotal += item.getExtendedPrice();
+        subtotal += item.getExtendedOriginalPrice() - item.getDiscountAmt();
+        amountSaved += item.getDiscountAmt();
     }
     
     public void addToArray(LineItem li) {
@@ -30,8 +32,8 @@ public class Ticket extends Tax {
         
     }
     
-    public void closeTicket() {
-        salesTax = calculateSalesTax(subtotal);
+    public void closeTicket(TaxStrategy ts) {
+        salesTax = ts.calculateTaxAmount(subtotal);
         findTotalSale();
     }
     
@@ -51,7 +53,7 @@ public class Ticket extends Tax {
         return Round.roundToTwoDecimals(totalSale);
     }
 
-    public void findTotalSale() {
+    private void findTotalSale() {
         this.totalSale = subtotal + salesTax;
     }
 
@@ -67,6 +69,9 @@ public class Ticket extends Tax {
         return lineItems;
     }
     
+    public double getAmountSaved() {
+        return amountSaved;
+    }
     
     
 }

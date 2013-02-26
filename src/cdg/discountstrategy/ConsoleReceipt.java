@@ -6,7 +6,7 @@ import java.text.NumberFormat;
 /**
  * @author Chris Geiser <cgeiser@my.wctc.edu>
  */
-public class ConsoleReceipt implements ReceiptStrategy {
+public class ConsoleReceipt implements ReceiptOutputStrategy {
 
     NumberFormat money = NumberFormat.getCurrencyInstance();
     
@@ -69,24 +69,32 @@ public class ConsoleReceipt implements ReceiptStrategy {
                 spCount += 3;
                 lineItemSection.append(items[x].getItem().getProductDesc());
                 spCount += items[x].getItem().getProductDesc().length();
-                String pr = money.format(items[x].getExtendedPrice());
+                lineItemSection.append(" x ");
+                spCount += 3;
+                lineItemSection.append(items[x].getQuantity());
+                spCount += Integer.toString(items[x].getQuantity()).length();
+                String pr = money.format(items[x].getExtendedOriginalPrice());
                 spCount += pr.length();
 //                Chris =  fgvftcygtf uyk6rfv ut==
                 lineItemSection.append(spaces, 0, 40-spCount);
                 lineItemSection.append(pr);
                 lineItemSection.append("\n  ");
-                // Item Line 2
-                lineItemSection.append(items[x].getQuantity());
-                lineItemSection.append(" @ ");
-                lineItemSection.append(money.format(items[x].getItem().getProductPrice()));
-                lineItemSection.append("\n  ");
+                
                 // Discount Desc Line
                 DiscountStrategy ds = items[x].getItem()
                         .getProductDiscStrategy();
+                spCount = 2;
                 if (items[x].getDiscountAmt() > 0) {
-                    lineItemSection.append(items[x].getItem()
-                        .getProductDiscStrategy().getDiscountDesc());
+                    String desc = items[x].getItem()
+                        .getProductDiscStrategy().getDiscountDesc();
+                    lineItemSection.append(desc);
+                    spCount += desc.length();
+                    String disc = money.format(0 - items[x].getDiscountAmt());
+                    spCount += disc.length();
+                    lineItemSection.append(spaces, 0, 40-spCount);
+                    lineItemSection.append(disc);
                 }
+                
         }
         
     }
@@ -105,6 +113,10 @@ public class ConsoleReceipt implements ReceiptStrategy {
         String tot = money.format(ticket.getTotalSale());
         totalsSection.append(spaces, 0, 10 - tot.length());
         totalsSection.append(tot);
+        // total saved
+        totalsSection.append("\n\n--- Total Saved Today  ");
+        totalsSection.append(money.format(ticket.getAmountSaved()));
+        totalsSection.append(" ---");
     }
     
 }

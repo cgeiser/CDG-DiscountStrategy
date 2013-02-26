@@ -13,6 +13,11 @@ public class LineItem {
     private FindProductStrategy findProduct = new FakeDatabase();
     
     public LineItem(String prodId, int qty) {
+            // validate prodId and qty
+            if (prodId == null || prodId.length() == 0 || qty <=0) {
+                System.out.println("Invalid Entry - Unable to create Line Item");
+                System.exit(0);
+            }
         quantity = qty;
         item = findProduct.findProduct(prodId);
     }
@@ -24,11 +29,11 @@ public class LineItem {
                     item.getProductPrice(), quantity));
     }
 
-    public double getExtendedPrice() {
-        return Round.roundToTwoDecimals(item.getProductPrice() * quantity)
-                - getDiscountAmt();
+    public double getExtendedOriginalPrice() {
+        return Round.roundToTwoDecimals(item.getProductPrice() * quantity);
     }
-   
+    
+    
     public Product getItem() {
         return item;
     }

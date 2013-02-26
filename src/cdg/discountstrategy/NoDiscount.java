@@ -25,7 +25,10 @@ public class NoDiscount implements DiscountStrategy {
     }
 
     public void setDiscountDesc(String discountDesc) {
+        // validate discountDesc
+        if (discountDesc != null && discountDesc.length() > 0 ) {
         this.discountDesc = discountDesc;
+        }
     }
 
     

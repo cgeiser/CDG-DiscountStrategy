@@ -10,6 +10,16 @@ public class Customer {
     private String custName;
     
     public Customer(String custId, String custName) {
+        // validate custId
+        if (custId == null || custId.length() == 0) {
+            System.out.println("Invalid Customer ID");
+            return;
+        }
+        // validate custName
+        if (custName == null || custName.length() == 0) {
+            System.out.println("Invalid Customer ID");
+            return;
+        }
         setCustId(custId);
         setCustName(custName);
     }
@@ -19,6 +29,11 @@ public class Customer {
     }
 
     public void setCustId(String custId) {
+        // validate custId
+        if (custId == null || custId.length() == 0) {
+            System.out.println("Invalid Customer ID");
+            return;
+        }
         this.custId = custId;
     }
 
@@ -27,6 +42,11 @@ public class Customer {
     }
 
     public void setCustName(String custName) {
+        // validate custName
+        if (custName == null || custName.length() == 0) {
+            System.out.println("Invalid Customer ID");
+            return;
+        }
         this.custName = custName;
     }
 
