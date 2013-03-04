@@ -7,17 +7,18 @@ import javax.swing.*;
 
 /**
  * Constructs the TotalsPanel for GuiReceipt.
- * 
+ * Displays the subtotal, tax amount, total, amount saved, date of sale.
  * @author Chris Geiser <cgeiser@my.wctc.edu>
+ * @version 1.0
  */
 public class TotalsPanel extends JPanel {
 
-    NumberFormat money = NumberFormat.getCurrencyInstance();
+    private NumberFormat money = NumberFormat.getCurrencyInstance();
+    private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy  HH:mm:ss");
     
-    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy  HH:mm:ss");
     
     public TotalsPanel(Ticket t) {
-        
+        // needs validation
         setLayout(new GridLayout(4,1));
         
         
