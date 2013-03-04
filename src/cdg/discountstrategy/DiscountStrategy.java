@@ -2,6 +2,8 @@
 package cdg.discountstrategy;
 
 /**
+ * Allows for interchangeable Discounts for Products.
+ * Each must have a getDiscount and a getDiscountDesc (description) method.
  * @author cgeiser
  */
 public interface DiscountStrategy {

@@ -4,7 +4,6 @@ import java.text.NumberFormat;
 
 /**
  * Used in the ConsoleReceipt to format Line Items for console display.
- * 
  * This formats the line item as:
  * LineItem#  itemId  itemDesc  ExtendedPrice
  * discDesc  discount
@@ -22,7 +21,7 @@ public class LineItemFormat2 implements ConsoleReceiptLineItemFormatStrategy {
     static int lineCounter = 0;
     
     /**
-     * Accepts a LineItem and a rowWidth.
+     * Returns a formatted LineItem using rowWidth.
      * @return String
      */
     @Override

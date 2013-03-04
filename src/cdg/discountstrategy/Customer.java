@@ -2,6 +2,7 @@
 package cdg.discountstrategy;
 
 /**
+ * Holds a customer ID and Name for a Customer Class object.
  * @author Chris Geiser <cgeiser@my.wctc.edu>
  */
 public class Customer {
@@ -24,10 +25,18 @@ public class Customer {
         setCustName(custName);
     }
 
+    /**
+     * Gets the Customer ID.
+     * @return String custId
+     */
     public String getCustId() {
         return custId;
     }
 
+    /**
+     * Sets the Customer ID
+     * @param custId 
+     */
     public void setCustId(String custId) {
         // validate custId
         if (custId == null || custId.length() == 0) {
@@ -37,10 +46,18 @@ public class Customer {
         this.custId = custId;
     }
 
+    /**
+     * Gets the Customer Name
+     * @return String custName
+     */
     public String getCustName() {
         return custName;
     }
 
+    /**
+     * Sets the Customer Name
+     * @param custName 
+     */
     public void setCustName(String custName) {
         // validate custName
         if (custName == null || custName.length() == 0) {

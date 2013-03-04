@@ -5,7 +5,6 @@ import java.text.NumberFormat;
 /**
  * Used in the ConsoleReceipt to output to the console.
  * This formats the line item as:
- * 
  * itemID  itemDesc x qty   extendedPrice
  * discDesc             discount
  * 
@@ -14,14 +13,14 @@ import java.text.NumberFormat;
  */
 public class LineItemFormat1 implements ConsoleReceiptLineItemFormatStrategy {
 
-    NumberFormat money = NumberFormat.getCurrencyInstance();
+    private NumberFormat money = NumberFormat.getCurrencyInstance();
     
     private CharSequence spaces = "                                           ";
     
     private StringBuilder section;
     
     /**
-     * 
+     * Returns a formatted LineItem using width = rowWidth.
      * @param lineItem
      * @param rowWidth
      * @return String

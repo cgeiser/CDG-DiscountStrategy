@@ -2,7 +2,10 @@
 package cdg.discountstrategy;
 
 /**
+ * Contains parameters for each Product...
+ * ID, Description, Price, DiscountStrategy used.
  * @author cgeiser
+ * @version 1.0
  */
 public class Product  {
     
@@ -37,7 +40,7 @@ public class Product  {
         this.prodDiscStrategy = discStrat;
     }
 
-    
+    // Getters and Setters
 
     public String getProductId() {
         return prodId;
@@ -85,16 +88,5 @@ public class Product  {
     public void setProductDiscStrategy(DiscountStrategy prodDisc) {
         this.prodDiscStrategy = prodDisc;
     }
-    
-    
-
-    // test method
-//    public static void main(String[] args) {
-//        Product p1 = new Product("3344", "Men's Black Socks", 7.89, new FixedAmountDiscount(4));
-//        System.out.println(p1.getProductId());
-//        System.out.println(p1.getProductDesc());
-//        System.out.println(p1.getProductPrice());
-//        System.out.println(p1.getProductDiscStrategy().getDiscount(p1.getProductPrice(), 1));
-//    }
-    
+        
 }

@@ -5,11 +5,13 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 
 /**
+ * Creates a Customer JPanel for receipt output to GUI.
  * @author Chris Geiser <cgeiser@my.wctc.edu>
  */
 public class CustomerPanel extends JPanel {
 
     public CustomerPanel(Customer customer) {
+        // need validation
         setLayout(new BorderLayout());
                 
         JLabel receipt = new JLabel("RECEIPT");

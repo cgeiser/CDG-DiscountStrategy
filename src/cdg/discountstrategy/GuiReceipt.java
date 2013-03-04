@@ -7,6 +7,7 @@ import javax.swing.*;
 
 
 /**
+ * One of the Receipt Output Strategies.
  * Outputs Receipt to GUI.
  * 
  * @author Chris Geiser <cgeiser@my.wctc.edu>
@@ -18,6 +19,7 @@ public class GuiReceipt extends JFrame implements ReceiptOutputStrategy {
     }
 
     public GuiReceipt(Ticket ticket) {
+        // needs validation
         super("Receipt");
         setSize(300, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
