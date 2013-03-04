@@ -8,7 +8,6 @@ public class CashRegister {
     
     private Customer customer;
     private Ticket ticket;
-//    private ReceiptOutputStrategy receiptStrategy;
     private TaxStrategy taxStrategy = new SalesTax();
 
     
@@ -46,9 +45,9 @@ public class CashRegister {
         }
     }
     
-    public void checkout(ReceiptOutputStrategy rs) {
+    public void checkout(ReceiptOutputStrategy ros) {
         this.ticket.closeTicket(taxStrategy);
-        rs.displayReceipt(ticket);
+        ros.displayReceipt(ticket);
     }
     
     public Customer getCustomer() {

@@ -6,6 +6,6 @@ package cdg.discountstrategy;
  */
 public interface ReceiptOutputStrategy {
 
-    public abstract void displayReceipt(Ticket ticket);
+    public abstract void displayReceipt (Ticket ticket);
 
 }

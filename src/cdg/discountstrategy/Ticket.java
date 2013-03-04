@@ -1,6 +1,9 @@
 
 package cdg.discountstrategy;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * @author Chris Geiser <cgeiser@my.wctc.edu>
  */
@@ -12,6 +15,7 @@ public class Ticket {
     private double amountSaved = 0;
     private double salesTax;
     private double totalSale;
+    private Date saleDate;
     
     public Ticket(Customer c) {
         customer = c;
@@ -33,6 +37,7 @@ public class Ticket {
     }
     
     public void closeTicket(TaxStrategy ts) {
+        saleDate = (Calendar.getInstance()).getTime();
         salesTax = ts.calculateTaxAmount(subtotal);
         findTotalSale();
     }
@@ -71,6 +76,14 @@ public class Ticket {
     
     public double getAmountSaved() {
         return amountSaved;
+    }
+
+    public Date getSaleDate() {
+        return saleDate;
+    }
+
+    public void setSaleDate(Date saleDate) {
+        this.saleDate = saleDate;
     }
     
     

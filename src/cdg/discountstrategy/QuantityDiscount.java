@@ -3,20 +3,22 @@ package cdg.discountstrategy;
 import java.text.NumberFormat;
 
 /**
+ * One of the DiscountStrategy options.
+ * Item has a percentage discount for a minimum quantity purchased.
  * @author cgeiser
+ * @version 1.0
  */
 public class QuantityDiscount implements DiscountStrategy {
 
     private NumberFormat percent = NumberFormat.getPercentInstance();
-    private double discountRate = 0.10;
-    private int minQty = 5;
+    private double discountRate = 0.10; // default value
+    private int minQty = 5;             // default value
     private String discountDesc;
 
     // Constructors
     public QuantityDiscount() {
         setDiscountDesc();
     }
-
     public QuantityDiscount(int minQty) {
             // validate minQty
             if (minQty < 1) {
@@ -26,7 +28,6 @@ public class QuantityDiscount implements DiscountStrategy {
         this.minQty = minQty;
         setDiscountDesc();
     }
-    
     public QuantityDiscount(int minQty, double discRate) {
             // validate minQty
             if (minQty < 1) {
@@ -44,7 +45,13 @@ public class QuantityDiscount implements DiscountStrategy {
     }
 
     
-    // returns Discount
+    /**
+     * Method required by DiscountStrategy.
+     * Returns the discount amount for the item price & qty.
+     * @param price
+     * @param qty
+     * @return double Discount, 0 if minQty is not met
+     */
     @Override
     public double getDiscount(double price, int qty) {
             // validate price and qty
@@ -57,11 +64,30 @@ public class QuantityDiscount implements DiscountStrategy {
         else {return 0;}
     }
 
+    /**
+     * Method required by DiscountStrategy.
+     * Returns the Discount Description.
+     * @return String discountDesc
+     */
+    @Override
+    public String getDiscountDesc() {
+        return discountDesc;
+    }
+    
     // Getters & Setters
+    /**
+     * Returns the percentage rate of the discount.
+     * @return double discountRate
+     */
     public double getDiscountRate() {
         return discountRate;
     }
 
+    /**
+     * Sets the discount percentage rate.
+     * And changes the discount description to reflect the change.
+     * @param rate 
+     */
     public void setDiscountRate(double rate) {
             // validate rate
             if (rate <= 0 || rate > 1) {
@@ -72,10 +98,19 @@ public class QuantityDiscount implements DiscountStrategy {
         setDiscountDesc();
     }
 
+    /**
+     * Returns the Minimum Quantity needed to get the discount.
+     * @return int minQty
+     */
     public int getMinQty() {
         return minQty;
     }
 
+    /**
+     * Sets the Minimum Quantity needed to get the discount.
+     * And changes the discount description to reflect the change.
+     * @param minQty 
+     */
     public void setMinQty(int minQty) {
             // validate minQty
             if (minQty < 1) {
@@ -86,29 +121,12 @@ public class QuantityDiscount implements DiscountStrategy {
         setDiscountDesc();
     }
 
-    @Override
-    public String getDiscountDesc() {
-        return discountDesc;
-    }
-
+    /**
+     * Used by QuantityDiscount to change the Discount Description.
+     */
     private void setDiscountDesc() {
         discountDesc = percent.format(discountRate) + " off "
             + minQty + " or more";
     }
     
-    
-    
-    // test method
-//    public static void main(String[] args) {
-//        QuantityDiscount qd1 = new QuantityDiscount();
-//        System.out.println(qd1.getDiscount(100.00, 2));
-//        
-//        QuantityDiscount qd2 = new QuantityDiscount(10);
-//        System.out.println(qd2.getDiscount(20, 6));
-//        System.out.println(qd2.getDiscount(20, 10));
-//        
-//        QuantityDiscount qd3 = new QuantityDiscount(8, 0.30);
-//        System.out.println(qd3.getDiscount(20, 6));
-//        System.out.println(qd3.getDiscount(20, 10));
-//    }
 }

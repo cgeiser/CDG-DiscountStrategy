@@ -1,8 +1,9 @@
-
 package cdg.discountstrategy;
 
 /**
+ * Contains the hard-coded Product and Customer arrays.
  * @author Chris Geiser <cgeiser@my.wctc.edu>
+ * @version 1.0
  */
 public class FakeDatabase implements PersistenceStrategy {
     
@@ -28,7 +29,11 @@ public class FakeDatabase implements PersistenceStrategy {
     };
     
     
-    
+    /**
+     * Searches the "database" for a Product matching the Id passed.
+     * @param prodId
+     * @return Product product if a match is found
+     */
     @Override
     public final Product findProduct (final String prodId) {
 	// validate prodId
@@ -46,7 +51,11 @@ public class FakeDatabase implements PersistenceStrategy {
         return product;
     }
 	
-    
+    /**
+     * Searches the "database" for a Customer matching the Id passed.
+     * @param custId
+     * @return Customer customer if a match is found
+     */
     @Override
     public final Customer findCustomer(final String custId) {
 	// validate custId
@@ -61,35 +70,7 @@ public class FakeDatabase implements PersistenceStrategy {
                 break;
             }
         }
-        
         return customer;
     }
-    
-    
-    // test method
-//    public static void main(String[] args) {
-//        FakeDatabase fd = new FakeDatabase();
-//        Product p = fd.findProduct("2222");
-//        System.out.println(p.getProductId() + "  " + p.getProductDesc() + "  "
-//                + p.getProductPrice());
-//        
-//        Product f = fd.findProduct("6699");
-//        if (f == null) {
-//            System.out.println("No Match found");
-//        }
-//        else {
-//            System.out.println(f.getProductId() + "  " + f.getProductDesc() + "  "
-//                + f.getProductPrice());
-//        }
-//        
-//        
-//        
-//        Customer c = fd.findCustomer("F00");
-//        if (c == null) {
-//            System.out.println("No Match found");
-//        }
-//        else {
-//            System.out.println(c.getCustId() + "  " + c.getCustName());
-//        }
-//    }
+
 }

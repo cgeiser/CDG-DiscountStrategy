@@ -1,24 +1,39 @@
-
 package cdg.discountstrategy;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 
 /**
+ * Outputs the receipt to the console.
+ * formatLineItemSection uses a strategy to easily change the format, including
+ * the width of the display.  The other sections do not have that flexibility
+ * yet.
+ * 
  * @author Chris Geiser <cgeiser@my.wctc.edu>
  */
 public class ConsoleReceipt implements ReceiptOutputStrategy {
 
     NumberFormat money = NumberFormat.getCurrencyInstance();
     
-    private CharSequence spaces = "                                 ";
+    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy  HH:mm:ss");
+    
+    private CharSequence spaces = "                                           ";
     private StringBuilder headerSection = new StringBuilder();
     private StringBuilder customerSection = new StringBuilder();
     private StringBuilder lineItemSection = new StringBuilder();
     private StringBuilder totalsSection = new StringBuilder();
     private Ticket ticket;
+    private int rowWidth = 40;
     
     
     
+    /**
+     * Required method from ReceiptOutputStrategy.
+     * Uses private internal methods to construct each section using
+     * a StringBuilder.
+     * 
+     * @param ticket 
+     */
     @Override
     public void displayReceipt(Ticket ticket) {
         this.ticket = ticket;
@@ -51,52 +66,18 @@ public class ConsoleReceipt implements ReceiptOutputStrategy {
         String name = ticket.getCustomer().getCustName();
         customerSection.append("\nCustomer ID:\n");
         customerSection.append(id);
-        customerSection.append(spaces, 0, 40 - id.length() - name.length());
+        customerSection.append(spaces, 0, rowWidth - id.length() - name.length());
         customerSection.append(name);
         customerSection.append("\n----------------------------------------");
     }
     
     private void formatLineItemSection() {
+        ConsoleReceiptLineItemFormatStrategy lif = new LineItemFormat2();
         
         LineItem[] items = ticket.getLineItems();
-            for (int x=0; x<items.length; x++) {
-                int spCount = 0;
-                lineItemSection.append("\n");
-                // Item Line 1
-                lineItemSection.append(items[x].getItem().getProductId());
-                spCount += items[x].getItem().getProductId().length();
-                lineItemSection.append(spaces, 0, 3);
-                spCount += 3;
-                lineItemSection.append(items[x].getItem().getProductDesc());
-                spCount += items[x].getItem().getProductDesc().length();
-                lineItemSection.append(" x ");
-                spCount += 3;
-                lineItemSection.append(items[x].getQuantity());
-                spCount += Integer.toString(items[x].getQuantity()).length();
-                String pr = money.format(items[x].getExtendedOriginalPrice());
-                spCount += pr.length();
-//                Chris =  fgvftcygtf uyk6rfv ut==
-                lineItemSection.append(spaces, 0, 40-spCount);
-                lineItemSection.append(pr);
-                lineItemSection.append("\n  ");
-                
-                // Discount Desc Line
-                DiscountStrategy ds = items[x].getItem()
-                        .getProductDiscStrategy();
-                spCount = 2;
-                if (items[x].getDiscountAmt() > 0) {
-                    String desc = items[x].getItem()
-                        .getProductDiscStrategy().getDiscountDesc();
-                    lineItemSection.append(desc);
-                    spCount += desc.length();
-                    String disc = money.format(0 - items[x].getDiscountAmt());
-                    spCount += disc.length();
-                    lineItemSection.append(spaces, 0, 40-spCount);
-                    lineItemSection.append(disc);
-                }
-                
+            for (LineItem li : items) {
+                lineItemSection.append(lif.formatLineItem(li, rowWidth));
         }
-        
     }
     
     private void formatTotalsSection() {
@@ -114,9 +95,13 @@ public class ConsoleReceipt implements ReceiptOutputStrategy {
         totalsSection.append(spaces, 0, 10 - tot.length());
         totalsSection.append(tot);
         // total saved
-        totalsSection.append("\n\n--- Total Saved Today  ");
+        totalsSection.append("\n\n    ---- Total Saved: ");
         totalsSection.append(money.format(ticket.getAmountSaved()));
-        totalsSection.append(" ---");
+        totalsSection.append(" ----");
+        totalsSection.append("\n---- Thank You for shopping with us! ---");
+        // date & time
+        totalsSection.append("\n          ");
+        totalsSection.append(sdf.format(ticket.getSaleDate()));
     }
     
 }
